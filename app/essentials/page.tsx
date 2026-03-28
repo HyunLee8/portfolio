@@ -38,7 +38,7 @@ export default function Essentials() {
                     <span>16 CORE GPU</span>
                   </div>
                   <p className="text-gray-600 leading-relaxed text-[15px]">
-                    Everything comes in and out
+                    School, Projects, SSN, etc.
                   </p>
                 </div>
               </div>
