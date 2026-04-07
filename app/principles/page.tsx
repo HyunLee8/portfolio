@@ -35,7 +35,7 @@ const songs: Song[] = [
     album: "Bloom",
     year: "2012",
     image: "/bloom.jpg",
-    note: "",
+    note: "blanc",
     url: "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     genre: "DREAM POP",
     runtime: "5:23",
