@@ -67,7 +67,7 @@ export default function Useful() {
 
       <div className="max-w-6xl mx-auto py-16 sm:py-20">
         <div className="mb-12 sm:mb-20">
-          <h1 className="text-4xl sm:text-6xl font-light text-gray-900 mb-4 tracking-wide">Stuff</h1>
+          <h1 className="text-4xl sm:text-6xl font-light text-gray-900 mb-4 tracking-wide">Useful stuff</h1>
           <div className="w-32 h-0.5 bg-gray-900"></div>
         </div>
 

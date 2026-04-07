@@ -39,7 +39,7 @@ export default function Home() {
         Principles →
       </Link>
       <Link href="useful" className="hover:underline">
-        Stuff →
+        Hygiene →
       </Link>
       <Link href="links" className="hover:underline">
         Links →
