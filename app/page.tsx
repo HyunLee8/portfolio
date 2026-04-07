@@ -38,6 +38,9 @@ export default function Home() {
       <Link href="principles" className="hover:underline">
         Principles →
       </Link>
+      <Link href="useful" className="hover:underline">
+        Stuff →
+      </Link>
       <Link href="links" className="hover:underline">
         Links →
       </Link>
