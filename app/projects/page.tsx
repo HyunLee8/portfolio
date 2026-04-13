@@ -49,7 +49,7 @@ export default function Home() {
                   muted
                   playsInline
                 >
-                  <source src="/mapper1.mp4" type="video/mp4" />
+                  <source src="/mapper1.mp4#t=5" type="video/mp4" />
                 </video>
               </div>
               <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white max-h-[440px]">
@@ -60,7 +60,7 @@ export default function Home() {
                   muted
                   playsInline
                 >
-                  <source src="/mapper2.mp4" type="video/mp4" />
+                  <source src="/mapper2.mp4#t=2" type="video/mp4" />
                 </video>
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function Home() {
               muted
               playsInline
             >
-              <source src="/drone_demo.mp4" type="video/mp4" />
+              <source src="/drone_demo.mp4#t=25" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
