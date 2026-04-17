@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "title": "I Always Wanna Die (Sometimes)",
+    "artist": "The 1975",
+    "album": "A Brief Inquiry into Online Relationships",
+    "year": "2018",
+    "image": "/ESSENTIALS4.jpeg",
+    "note": "true.",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "ALTERNATIVE",
+    "runtime": "4:39",
+    "colors": ["#f4f1ec", "#d9d4cb", "#a8a29a", "#4a4a48", "#141414"]
+  },
+  {
+    "id": "2",
+    "title": "Wishes",
+    "artist": "Beach House",
+    "album": "Bloom",
+    "year": "2012",
+    "image": "/bloom.jpg",
+    "note": "blanc",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "DREAM POP",
+    "runtime": "5:23",
+    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+  },
+  {
+    "id": "3",
+    "title": "About You",
+    "artist": "The 1975",
+    "album": "Being Funny in a Foreign Language",
+    "year": "2022",
+    "image": "/ESSENTIALS2.png",
+    "note": "The best bridge in a song",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "INDIE POP",
+    "runtime": "5:26",
+    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+  },
+  {
+    "id": "4",
+    "title": "여전히 아름다운지",
+    "artist": "TOY | Yoo Hee Yeol",
+    "album": "Fermata",
+    "year": "1999",
+    "image": "/TOY1.jpg",
+    "note": "crème de la crème | All time no. 1",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "K-POP BALLAD",
+    "runtime": "4:52",
+    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+  },
+  {
+    "id": "5",
+    "title": "Back To Me",
+    "artist": "The Marias",
+    "album": "Back To Me",
+    "year": "2025",
+    "image": "/BACKTOME.jpg",
+    "note": "Holy Elec",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "PSYCHEDELIC POP",
+    "runtime": "3:47",
+    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+  },
+  {
+    "id": "6",
+    "title": "Lily of the Valley",
+    "artist": "DANIEL",
+    "album": "Flower",
+    "year": "2021",
+    "image": "/ESSENTIALS5.jpeg",
+    "note": "Selah",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "WORSHIP",
+    "runtime": "5:08",
+    "colors": ["#f4f1e8", "#d8d2bc", "#9ea87a", "#4a5a2a", "#1a220d"]
+  }
+]
