@@ -65,3 +65,16 @@ export async function DELETE(req: Request) {
   await writeSongs(songs);
   return NextResponse.json({ ok: true });
 }
+
+export async function PATCH(req: Request) {
+  if (!(await isAuthed())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const { order } = await req.json();
+  const songs = await readSongs();
+  const reordered = order
+    .map((id: string) => songs.find((s: { id: string }) => s.id === id))
+    .filter(Boolean);
+  await writeSongs(reordered);
+  return NextResponse.json(reordered);
+}

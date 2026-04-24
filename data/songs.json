@@ -10,7 +10,13 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "ALTERNATIVE",
     "runtime": "4:39",
-    "colors": ["#f4f1ec", "#d9d4cb", "#a8a29a", "#4a4a48", "#141414"]
+    "colors": [
+      "#f4f1ec",
+      "#d9d4cb",
+      "#a8a29a",
+      "#4a4a48",
+      "#141414"
+    ]
   },
   {
     "id": "2",
@@ -23,7 +29,13 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "DREAM POP",
     "runtime": "5:23",
-    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+    "colors": [
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
+    ]
   },
   {
     "id": "3",
@@ -36,7 +48,13 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "INDIE POP",
     "runtime": "5:26",
-    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+    "colors": [
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
+    ]
   },
   {
     "id": "4",
@@ -49,7 +67,13 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "K-POP BALLAD",
     "runtime": "4:52",
-    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+    "colors": [
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
+    ]
   },
   {
     "id": "5",
@@ -62,7 +86,13 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "PSYCHEDELIC POP",
     "runtime": "3:47",
-    "colors": ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]
+    "colors": [
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
+    ]
   },
   {
     "id": "6",
@@ -75,6 +105,12 @@
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "WORSHIP",
     "runtime": "5:08",
-    "colors": ["#f4f1e8", "#d8d2bc", "#9ea87a", "#4a5a2a", "#1a220d"]
+    "colors": [
+      "#f4f1e8",
+      "#d8d2bc",
+      "#9ea87a",
+      "#4a5a2a",
+      "#1a220d"
+    ]
   }
 ]

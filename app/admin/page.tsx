@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 
 type Song = {
@@ -30,6 +30,89 @@ const emptySong: Omit<Song, "id"> = {
   colors: ["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"],
 };
 
+function extractColorsFromImage(src: string): Promise<string[]> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d")!;
+      const size = 64;
+      canvas.width = size;
+      canvas.height = size;
+      ctx.drawImage(img, 0, 0, size, size);
+      const data = ctx.getImageData(0, 0, size, size).data;
+
+      const pixels: [number, number, number][] = [];
+      for (let i = 0; i < data.length; i += 4) {
+        pixels.push([data[i], data[i + 1], data[i + 2]]);
+      }
+
+      let buckets: [number, number, number][][] = [pixels];
+
+      while (buckets.length < 5) {
+        let maxRange = -1;
+        let maxIdx = 0;
+        let maxCh = 0;
+
+        for (let i = 0; i < buckets.length; i++) {
+          for (let ch = 0; ch < 3; ch++) {
+            let min = 255,
+              max = 0;
+            for (const p of buckets[i]) {
+              if (p[ch] < min) min = p[ch];
+              if (p[ch] > max) max = p[ch];
+            }
+            const range = max - min;
+            if (range > maxRange) {
+              maxRange = range;
+              maxIdx = i;
+              maxCh = ch;
+            }
+          }
+        }
+
+        const bucket = buckets[maxIdx];
+        bucket.sort((a, b) => a[maxCh] - b[maxCh]);
+        const mid = Math.floor(bucket.length / 2);
+        buckets.splice(maxIdx, 1, bucket.slice(0, mid), bucket.slice(mid));
+      }
+
+      const colors = buckets.map((bucket) => {
+        const avg = [0, 0, 0];
+        for (const p of bucket) {
+          avg[0] += p[0];
+          avg[1] += p[1];
+          avg[2] += p[2];
+        }
+        return (
+          "#" +
+          [0, 1, 2]
+            .map((i) =>
+              Math.round(avg[i] / bucket.length)
+                .toString(16)
+                .padStart(2, "0")
+            )
+            .join("")
+        );
+      });
+
+      const lum = (hex: string) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return 0.299 * r + 0.587 * g + 0.114 * b;
+      };
+      colors.sort((a, b) => lum(b) - lum(a));
+
+      resolve(colors);
+    };
+    img.onerror = () =>
+      resolve(["#ffffff", "#bfbfbf", "#808080", "#404040", "#000000"]);
+    img.src = src;
+  });
+}
+
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -39,6 +122,12 @@ export default function AdminPage() {
   const [editing, setEditing] = useState<Song | null>(null);
   const [adding, setAdding] = useState(false);
   const [form, setForm] = useState<Omit<Song, "id">>(emptySong);
+  const [uploading, setUploading] = useState(false);
+  const [extracting, setExtracting] = useState(false);
+  const [imageDragOver, setImageDragOver] = useState(false);
+  const [dragIdx, setDragIdx] = useState<number | null>(null);
+  const [dragOverIdx, setDragOverIdx] = useState<number | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetch("/api/admin/check")
@@ -118,6 +207,94 @@ export default function AdminPage() {
     setEditing(null);
     setAdding(false);
     setForm(emptySong);
+  }
+
+  async function uploadFile(file: File) {
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+    const res = await fetch("/api/admin/upload", {
+      method: "POST",
+      body: formData,
+    });
+    if (res.ok) {
+      const { path } = await res.json();
+      setForm((prev) => ({ ...prev, image: path }));
+      autoExtractColors(path);
+    }
+    setUploading(false);
+  }
+
+  async function autoExtractColors(imagePath: string) {
+    if (!imagePath) return;
+    setExtracting(true);
+    const colors = await extractColorsFromImage(imagePath);
+    setForm((prev) => ({ ...prev, colors }));
+    setExtracting(false);
+  }
+
+  const handleImageDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setImageDragOver(false);
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith("image/")) {
+        uploadFile(file);
+      }
+    },
+    []
+  );
+
+  const handleImageDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setImageDragOver(true);
+  }, []);
+
+  const handleImageDragLeave = useCallback(() => {
+    setImageDragOver(false);
+  }, []);
+
+  const handleFileSelect = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) uploadFile(file);
+    },
+    []
+  );
+
+  // Song list reordering
+  function handleSongDragStart(idx: number) {
+    setDragIdx(idx);
+  }
+
+  function handleSongDragOver(e: React.DragEvent, idx: number) {
+    e.preventDefault();
+    setDragOverIdx(idx);
+  }
+
+  async function handleSongDrop(idx: number) {
+    if (dragIdx === null || dragIdx === idx) {
+      setDragIdx(null);
+      setDragOverIdx(null);
+      return;
+    }
+    const reordered = [...songs];
+    const [moved] = reordered.splice(dragIdx, 1);
+    reordered.splice(idx, 0, moved);
+    setSongs(reordered);
+    setDragIdx(null);
+    setDragOverIdx(null);
+
+    await fetch("/api/admin/songs", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ order: reordered.map((s) => s.id) }),
+    });
+  }
+
+  function handleSongDragEnd() {
+    setDragIdx(null);
+    setDragOverIdx(null);
   }
 
   if (checking) {
@@ -216,17 +393,65 @@ export default function AdminPage() {
                 onChange={(e) => setForm({ ...form, runtime: e.target.value })}
                 className="border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-gray-900"
               />
-              <input
-                placeholder="Image path (e.g. /album.jpg)"
-                value={form.image}
-                onChange={(e) => setForm({ ...form, image: e.target.value })}
-                className="border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-gray-900"
-              />
+
+              {/* Image drop zone */}
+              <div className="col-span-2">
+                <label className="text-xs text-gray-500 mb-2 block">
+                  Album Cover
+                </label>
+                <div
+                  onDrop={handleImageDrop}
+                  onDragOver={handleImageDragOver}
+                  onDragLeave={handleImageDragLeave}
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`border-2 border-dashed rounded cursor-pointer transition-colors flex items-center gap-4 p-4 ${
+                    imageDragOver
+                      ? "border-gray-900 bg-gray-100"
+                      : "border-gray-300 hover:border-gray-400"
+                  }`}
+                >
+                  {form.image ? (
+                    <img
+                      src={form.image}
+                      alt=""
+                      className="w-20 h-20 object-cover border border-gray-200"
+                    />
+                  ) : (
+                    <div className="w-20 h-20 bg-gray-200 flex items-center justify-center text-gray-400 text-xs">
+                      No image
+                    </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    {uploading ? (
+                      <p className="text-sm text-gray-500">Uploading...</p>
+                    ) : (
+                      <>
+                        <p className="text-sm text-gray-700">
+                          Drop an image here or click to browse
+                        </p>
+                        {form.image && (
+                          <p className="text-xs text-gray-400 mt-1 truncate">
+                            {form.image}
+                          </p>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileSelect}
+                  className="hidden"
+                />
+              </div>
+
               <input
                 placeholder="Spotify URL"
                 value={form.url}
                 onChange={(e) => setForm({ ...form, url: e.target.value })}
-                className="border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-gray-900"
+                className="col-span-2 border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-gray-900"
               />
               <input
                 placeholder="Note"
@@ -234,10 +459,20 @@ export default function AdminPage() {
                 onChange={(e) => setForm({ ...form, note: e.target.value })}
                 className="col-span-2 border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:border-gray-900"
               />
+
+              {/* Color palette */}
               <div className="col-span-2">
-                <label className="text-xs text-gray-500 mb-2 block">
-                  Colors (5 hex values, comma separated)
-                </label>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs text-gray-500">Color Palette</label>
+                  <button
+                    type="button"
+                    onClick={() => autoExtractColors(form.image)}
+                    disabled={!form.image || extracting}
+                    className="text-xs text-gray-500 hover:text-gray-900 underline underline-offset-2 disabled:opacity-40 disabled:no-underline disabled:cursor-not-allowed"
+                  >
+                    {extracting ? "Extracting..." : "Extract from image"}
+                  </button>
+                </div>
                 <input
                   placeholder="#ffffff, #bfbfbf, #808080, #404040, #000000"
                   value={form.colors.join(", ")}
@@ -277,12 +512,26 @@ export default function AdminPage() {
           </div>
         )}
 
-        <div className="space-y-3">
-          {songs.map((song) => (
+        <div className="space-y-1">
+          {songs.map((song, idx) => (
             <div
               key={song.id}
-              className="flex items-center gap-4 border border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+              draggable
+              onDragStart={() => handleSongDragStart(idx)}
+              onDragOver={(e) => handleSongDragOver(e, idx)}
+              onDrop={() => handleSongDrop(idx)}
+              onDragEnd={handleSongDragEnd}
+              className={`flex items-center gap-4 border p-4 transition-all ${
+                dragIdx === idx
+                  ? "opacity-30 border-gray-200"
+                  : dragOverIdx === idx
+                  ? "border-gray-900 bg-gray-50"
+                  : "border-gray-200 hover:bg-gray-50"
+              }`}
             >
+              <div className="cursor-grab active:cursor-grabbing text-gray-300 hover:text-gray-500 select-none text-lg leading-none">
+                &#8942;&#8942;
+              </div>
               {song.image && (
                 <img
                   src={song.image}
