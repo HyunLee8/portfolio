@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import fs from "fs/promises";
 import path from "path";
 
@@ -37,6 +38,7 @@ export async function POST(req: Request) {
   song.id = String(Date.now());
   songs.push(song);
   await writeSongs(songs);
+  revalidatePath("/principles");
   return NextResponse.json(song);
 }
 
@@ -52,6 +54,7 @@ export async function PUT(req: Request) {
   }
   songs[index] = updated;
   await writeSongs(songs);
+  revalidatePath("/principles");
   return NextResponse.json(updated);
 }
 
@@ -63,6 +66,7 @@ export async function DELETE(req: Request) {
   let songs = await readSongs();
   songs = songs.filter((s: { id: string }) => s.id !== id);
   await writeSongs(songs);
+  revalidatePath("/principles");
   return NextResponse.json({ ok: true });
 }
 
@@ -76,5 +80,6 @@ export async function PATCH(req: Request) {
     .map((id: string) => songs.find((s: { id: string }) => s.id === id))
     .filter(Boolean);
   await writeSongs(reordered);
+  revalidatePath("/principles");
   return NextResponse.json(reordered);
 }
