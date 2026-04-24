@@ -1,21 +1,40 @@
 [
   {
-    "id": "1",
-    "title": "I Always Wanna Die (Sometimes)",
-    "artist": "The 1975",
-    "album": "A Brief Inquiry into Online Relationships",
-    "year": "2018",
-    "image": "/ESSENTIALS4.jpeg",
-    "note": "true.",
+    "id": "4",
+    "title": "여전히 아름다운지",
+    "artist": "TOY | Yoo Hee Yeol",
+    "album": "Fermata",
+    "year": "1999",
+    "image": "/TOY1.jpg",
+    "note": "crème de la crème | All time no. 1",
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
-    "genre": "ALTERNATIVE",
-    "runtime": "4:39",
+    "genre": "K-POP BALLAD",
+    "runtime": "4:52",
     "colors": [
-      "#f4f1ec",
-      "#d9d4cb",
-      "#a8a29a",
-      "#4a4a48",
-      "#141414"
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
+    ]
+  },
+  {
+    "id": "5",
+    "title": "Back To Me",
+    "artist": "The Marias",
+    "album": "Back To Me",
+    "year": "2025",
+    "image": "/BACKTOME.jpg",
+    "note": "Holy Elec",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "PSYCHEDELIC POP",
+    "runtime": "3:47",
+    "colors": [
+      "#ffffff",
+      "#bfbfbf",
+      "#808080",
+      "#404040",
+      "#000000"
     ]
   },
   {
@@ -57,41 +76,22 @@
     ]
   },
   {
-    "id": "4",
-    "title": "여전히 아름다운지",
-    "artist": "TOY | Yoo Hee Yeol",
-    "album": "Fermata",
-    "year": "1999",
-    "image": "/TOY1.jpg",
-    "note": "crème de la crème | All time no. 1",
+    "id": "1",
+    "title": "I Always Wanna Die (Sometimes)",
+    "artist": "The 1975",
+    "album": "A Brief Inquiry into Online Relationships",
+    "year": "2018",
+    "image": "/ESSENTIALS4.jpeg",
+    "note": "true.",
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
-    "genre": "K-POP BALLAD",
-    "runtime": "4:52",
+    "genre": "ALTERNATIVE",
+    "runtime": "4:39",
     "colors": [
-      "#ffffff",
-      "#bfbfbf",
-      "#808080",
-      "#404040",
-      "#000000"
-    ]
-  },
-  {
-    "id": "5",
-    "title": "Back To Me",
-    "artist": "The Marias",
-    "album": "Back To Me",
-    "year": "2025",
-    "image": "/BACKTOME.jpg",
-    "note": "Holy Elec",
-    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
-    "genre": "PSYCHEDELIC POP",
-    "runtime": "3:47",
-    "colors": [
-      "#ffffff",
-      "#bfbfbf",
-      "#808080",
-      "#404040",
-      "#000000"
+      "#f4f1ec",
+      "#d9d4cb",
+      "#a8a29a",
+      "#4a4a48",
+      "#141414"
     ]
   },
   {
@@ -103,7 +103,7 @@
     "image": "/ESSENTIALS5.jpeg",
     "note": "Selah",
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
-    "genre": "WORSHIP",
+    "genre": "",
     "runtime": "5:08",
     "colors": [
       "#f4f1e8",
@@ -111,6 +111,82 @@
       "#9ea87a",
       "#4a5a2a",
       "#1a220d"
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Worthy of It All",
+    "artist": "Upper Room",
+    "album": "Moments II",
+    "year": "2022",
+    "image": "/worthy_of_it_all.jpeg",
+    "note": "",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "",
+    "runtime": "9:03",
+    "colors": [
+      "#d4cfc8",
+      "#a8947a",
+      "#6a8ca0",
+      "#3a4a52",
+      "#1a1a1a"
+    ]
+  },
+  {
+    "id": "8",
+    "title": "Fake Plastic Trees",
+    "artist": "Radiohead",
+    "album": "The Bends",
+    "year": "1995",
+    "image": "/fake_plastic_trees.jpeg",
+    "note": "",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "",
+    "runtime": "4:50",
+    "colors": [
+      "#e8d0b8",
+      "#c8946a",
+      "#a04040",
+      "#3a3a3a",
+      "#141414"
+    ]
+  },
+  {
+    "id": "9",
+    "title": "Halo",
+    "artist": "YUBIN",
+    "album": "Halo",
+    "year": "2024",
+    "image": "/halo.jpeg",
+    "note": "",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "",
+    "runtime": "",
+    "colors": [
+      "#f0e0f0",
+      "#d0a8d8",
+      "#a8c8e8",
+      "#6878b0",
+      "#3a3050"
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Chariot",
+    "artist": "Beach House",
+    "album": "B-Sides and Rarities",
+    "year": "2017",
+    "image": "/chariot_beach_house.jpg",
+    "note": "",
+    "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
+    "genre": "",
+    "runtime": "",
+    "colors": [
+      "#4a4a4a",
+      "#3a3a4a",
+      "#2e3248",
+      "#282840",
+      "#1a1a1a"
     ]
   }
 ]
