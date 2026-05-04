@@ -202,7 +202,7 @@ export default function Home() {
               <div className="space-y-2 sm:space-y-3 border-l-2 border-gray-200 pl-4 sm:pl-5 group-hover:border-gray-900 transition-colors duration-300">
                 <h3 className="text-xs sm:text-sm font-semibold text-gray-900 uppercase tracking-wide">Data Structure</h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-[15px]">
-                  The program demands organization and you will pay for it like I did if you do not plan ahead. The shell of the entire message is built on top of just one class. Every large group of messages will be stored within classes and every class will have every possible type of message field it can have whether it is optional or not. All message field types are strongly encouraged to be used with an enum class in order to trace through errors more efficiently and also string lengths should also be stored in an enum to make sure you are indexing through correctly.
+                  This program demands strict organization as each message field is parsed directly from bytes. The shell of the entire message is built on top of just one class. Every large group of messages will be stored within classes and every class will have every possible type of message field it can have whether it is optional or not. All message field types are strongly encouraged to be used with an enum class in order to trace through errors more efficiently and also string lengths should also be stored in an enum to make sure you are indexing through correctly.
                 </p>
               </div>
 
