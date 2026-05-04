@@ -61,6 +61,8 @@ function PosterCard({ song }: { song: Song }) {
             <span>{song.year}</span>
             <span>•</span>
             <span>{song.runtime}</span>
+            <span>•</span>
+            <span>{song.genre}</span>
           </div>
 
           <div className="border-l-2 border-gray-200 pl-4 group-hover:border-gray-900 transition-colors duration-300">

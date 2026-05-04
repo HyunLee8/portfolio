@@ -1,21 +1,21 @@
 [
   {
     "id": "7",
-    "title": "Worthy of It All",
+    "title": "Pour my love on You",
     "artist": "Upper Room",
-    "album": "Moments II",
+    "album": "Moments: Near 007",
     "year": "2022",
-    "image": "/worthy_of_it_all.jpeg",
-    "note": "3:45 - 5:00",
+    "image": "/near.jpeg",
+    "note": "2:52 - 6:11",
     "url": "https://open.spotify.com/playlist/0RzkIyS7OHaEBcpDYZ8Wak",
     "genre": "LIFESTYLE",
-    "runtime": "9:03",
+    "runtime": "11:31",
     "colors": [
-      "#d4cfc8",
-      "#a8947a",
-      "#6a8ca0",
-      "#3a4a52",
-      "#1a1a1a"
+      "#e8920a",
+      "#d07e00",
+      "#b86e00",
+      "#8a5200",
+      "#ffffff"
     ]
   },
   {
@@ -87,11 +87,11 @@
     "genre": "DREAM POP",
     "runtime": "5:00",
     "colors": [
-      "#ffffff",
-      "#bfbfbf",
-      "#808080",
-      "#404040",
-      "#000000"
+      "#8b2020",
+      "#7a1a1a",
+      "#651515",
+      "#4a0e0e",
+      "#2a0808"
     ]
   },
   {
@@ -163,11 +163,11 @@
     "genre": "KOREAN BALLAD",
     "runtime": "5:08",
     "colors": [
-      "#f4f1e8",
-      "#d8d2bc",
-      "#9ea87a",
-      "#4a5a2a",
-      "#1a220d"
+      "#3a2a18",
+      "#2a1e10",
+      "#1e150a",
+      "#c8a060",
+      "#0e0a05"
     ]
   },
   {
