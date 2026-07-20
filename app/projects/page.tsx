@@ -96,14 +96,14 @@ export default function Home() {
               <div className="space-y-2 sm:space-y-3 border-l-2 border-gray-200 pl-4 sm:pl-5 group-hover:border-gray-900 transition-colors duration-300">
                 <h3 className="text-xs sm:text-sm font-semibold text-gray-900 uppercase tracking-wide">Concurrent Architecture</h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-[15px]">
-                There’s around 9 threads running in the back. Most of it is due receiving camera input, and throwing back Tello instructions via the SDK it comes with it. It got pretty messy once the code base got quite big because I accidentally ended up having a bit of circular imports with calling the directions input since in the object where I activated the camera I just lazily had it also take in the camera data. 
+                There are roughly 9 concurrent threads running under the hood, most of them handling either the incoming camera frame stream or dispatching movement commands back to the Tello over its UDP-based SDK interface. The architecture got messy once the codebase scaled up, mainly because I introduced circular imports between modules — the class responsible for initializing the camera connection also ended up owning the frame-buffer/data-passing logic for the control-input handlers, tightly coupling two things that shouldve been decoupled.
                </p>
               </div>
 
               <div className="space-y-2 sm:space-y-3 border-l-2 border-gray-200 pl-4 sm:pl-5 group-hover:border-gray-900 transition-colors duration-300">
                 <h3 className="text-xs sm:text-sm font-semibold text-gray-900 uppercase tracking-wide">Voice Intelligence</h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-[15px]">
-                During the end of the project I tried to add an LLM voice activator but it failed pretty bad because 11Eleven labs is pretty shit for how it is advertised. At the end I scrapped the voice activator and just went with a hold button but even then it was pretty bad at detecting voice commands.
+                Near the end of the project I attempted to integrate an LLM-driven voice-activation layer, but it underperformed significantly. ElevenLabs speech-to-text/wake-word pipeline had far higher latency and much lower recognition accuracy than advertised. I ended up scrapping the always-on voice activator entirely and fell back to a push-to-talk button instead, though even that implementation struggled with reliable voice command parsing under real-world noise conditions.
                 </p>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function Home() {
             </div>
           </div>
           
-          <Link href="https://arxiv.org/pdf/1909.09586" className="w-full lg:flex-1 grid grid-cols-2 gap-3 sm:gap-4">
+          <Link href="https://www.cboe.com/document/tech-spec/content/technical-specifications/cboe-titanium-u.s.-equities-boe-specification/list-of-message-types/member-to-cboe" className="w-full lg:flex-1 grid grid-cols-2 gap-3 sm:gap-4">
             <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white">
               <img
                 src="/CBOE1.png"
