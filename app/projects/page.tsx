@@ -89,7 +89,8 @@ export default function Home() {
               <div className="space-y-2 sm:space-y-3 border-l-2 border-gray-200 pl-4 sm:pl-5 group-hover:border-gray-900 transition-colors duration-300">
                 <h3 className="text-xs sm:text-sm font-semibold text-gray-900 uppercase tracking-wide">Computer Vision Pipeline</h3>
                 <p className="text-gray-600 leading-relaxed text-sm sm:text-[15px]">
-                DJI Tello Drone has a camera on the front that is angled a little bit below the parallel and for some reason the camera quality comes in as a hint of blue but it’s good enough for YOLO11n to detect general object. Even though media pipe extracts facial features better, YOLO can detect from farther away but one caveat it can’t detect faces so i had to calculate like the top ⅕ of the body to track.               </p>
+                The DJI Tellos front-facing camera is mounted at a slight downward pitch from horizontal, and its onboard sensor introduces a consistent blue color cast in the image, but the resolution and frame rate are sufficient for YOLO11n to run real-time object detection. While MediaPipe offers higher-fidelity facial landmark extraction, YOLO maintains detection accuracy at greater distances. Since YOLO11n lacks a dedicated face-detection class, I approximated head position by computing a bounding region over the top 20% of each detected persons bounding box and used that as the tracking target.
+                </p>
               </div>
 
               <div className="space-y-2 sm:space-y-3 border-l-2 border-gray-200 pl-4 sm:pl-5 group-hover:border-gray-900 transition-colors duration-300">
